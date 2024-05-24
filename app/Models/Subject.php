@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Subject extends Model
 {
     use HasFactory;
     /**
@@ -15,17 +15,18 @@ class Student extends Model
      */
     public $timestamps = false;
     protected $fillable = [
-        'firstname',
-        'lastname',
-        'birthdate',
-        'sex',
-        'address',
-        'year',
-        'course',
-        'section',
+        'student_id',   
+        'subject_code',
+        'name',
+        'description',
+        'instructor',
+        'schedule',
+        'grades',
+        'average_grade',
+        'remarks',
+        'date_taken',
     ];
-
-    public function subjects(){
-        return $this->hasMany(Subject::class);
+    public function student(){
+        return $this->belongsTo(Student::class);
     }
 }

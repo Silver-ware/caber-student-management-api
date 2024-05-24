@@ -14,16 +14,17 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained(
-                table: 'student', indexName: 'id'
+                table: 'students', indexName: 'id'
             );
             $table->string('subject_code');
             $table->string('name');
             $table->string('description');
             $table->string('instructor');
-            $table->json('grades');
+            $table->string('schedule');
+            $table->string('grades');
             $table->double('average_grade');
             $table->string('remarks');
-            $table->string('section');
+            $table->string('date_taken');
         });
     }
 

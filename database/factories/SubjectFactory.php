@@ -16,15 +16,18 @@ class SubjectFactory extends Factory
      */
     public function definition(): array
     {
-        $subject_code = fake()->randomElement(['IT', 'CS']) + fake()->numberBetween(120, 450);
-        $schedule = fake()->randomElement(['M', 'T', 'W', 'TH', 'F', 'S']) +
-            fake()->numberBetween(7, 12) + "am to" +
-            fake()->numberBetween(7, 12) + "pm";
-        $grades = fake()->randomElements([1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 4.0, 5.0], 4);
-        $avg = array_sum($grades) / count($grades);
-        $remarks = $avg >= 3.0 ? "PASSED" : "FAILED";
+        $subject_code = fake()->randomElement(['IT', 'CS']) . (string)fake()->numberBetween(120, 450);
+        $schedule = fake()->randomElement(['M', 'T', 'W', 'TH', 'F', 'S']) .
+            (string)fake()->numberBetween(7, 12) . "am to " .
+            (string)fake()->numberBetween(7, 12) . "pm";
+        $grades_arr = fake()->randomElements([1.0, 1.25, 1.5, 1.75, 2.0, 2.25, 2.5, 2.75, 3.0, 4.0, 5.0], 4);
+        $avg = array_sum($grades_arr) / count($grades_arr);
+        $grades = implode(" | ", $grades_arr);
+        $remarks = ($avg <= 3.0) ? "PASSED" : "FAILED";
+        
         return [
-            'subject_code' => $subject_code,
+            'student_id' => fake()->numberBetween(1, 12), //Create a foreign that links to students table, it ranges from 1 - 12
+            'subject_code' => $subject_code,              //    because that's the initial data of student's table
             'name' => fake()->sentence(2),
             'description' => fake()->sentence(),
             'instructor' => fake()->name(),

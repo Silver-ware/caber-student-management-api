@@ -15,19 +15,18 @@ class Subject extends Model
      */
     public $timestamps = false;
     protected $fillable = [
+        'student_id',   
         'subject_code',
         'name',
         'description',
         'instructor',
         'schedule',
         'grades',
+        'average_grade',
+        'remarks',
+        'date_taken',
     ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-    ];
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
 }

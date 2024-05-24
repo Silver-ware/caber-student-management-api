@@ -26,13 +26,17 @@ class SubjectFactory extends Factory
         $remarks = ($avg <= 3.0) ? "PASSED" : "FAILED";
         
         return [
-            'student_id' => fake()->numberBetween(1, 12), //Create a foreign that links to students table, it ranges from 1 - 12
-            'subject_code' => $subject_code,              //    because that's the initial data of student's table
+            'subject_code' => $subject_code,              
             'name' => fake()->sentence(2),
             'description' => fake()->sentence(),
             'instructor' => fake()->name(),
             'schedule' => $schedule,
-            'grades' => $grades,
+            'grades' => json_encode([
+                'prelims' => $grades_arr[0],
+                'midterms' => $grades_arr[1],
+                'prefinals' => $grades_arr[2],
+                'finals' => $grades_arr[3],
+            ]),
             'average_grade' => $avg,
             'remarks' => $remarks,
             'date_taken' => fake()->date('Y_m_d'),

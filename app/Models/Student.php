@@ -17,31 +17,9 @@ class Student extends Model
     protected $fillable = [
         'firstname',
         'lastname',
-        'birthdate',
-        'sex',
-        'address',
-        'year',
-        'course',
-        'section',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            
-        ];
+    public function subjects(){
+        return $this->hasMany(Subject::class);
     }
 }

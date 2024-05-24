@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
 //GET
 Route::get('/students/{id}/subjects', [SubjectController::class, 'index']);
 //POST
-Route::post('/students/{id}/subjects', [SubjectController::class, 'register']);
+Route::post('/students/{id}/subjects', [SubjectController::class, 'add']);
 //GET (SPECIFIC)
 Route::get('/students/{id}/subjects/{subject_id}', [SubjectController::class, 'find']);
 //PATCH

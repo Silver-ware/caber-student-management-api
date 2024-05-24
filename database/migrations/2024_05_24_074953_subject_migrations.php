@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_id')->constrained(
                 table: 'students', indexName: 'id'
-            );
+            )->onDelete('cascade');
             $table->string('subject_code');
             $table->string('name');
             $table->string('description');
             $table->string('instructor');
             $table->string('schedule');
-            $table->string('grades');
+            $table->json('grades');
             $table->double('average_grade');
             $table->string('remarks');
             $table->string('date_taken');

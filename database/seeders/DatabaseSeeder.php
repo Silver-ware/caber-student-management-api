@@ -19,30 +19,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Garry Caber',
         //     'email' => 'garrypedrosa.31@gmail.com',
         // ]);
-        
         Student::factory(10)->create();
-        Student::factory()->create([
-            'firstname' => 'Garry Caber', 
-            'lastname' => 'Caber',
-            'birthdate' => '2003-09-18',
-            'sex' => 'MALE',
-            'address' => 'Brgy. Tinaogan Basey, Samar',
-            'year' => 3,
-            'course' => 'BSIT',
-            'section' => 'B',
-        ]);
-
-        Student::factory()->create([
-            'firstname' => 'Juan', 
-            'lastname' => 'Ford',
-            'birthdate' => '2001-05-07',
-            'sex' => 'MALE',
-            'address' => 'Brgy. San. Antonio Basey, Samar',
-            'year' => 3,
-            'course' => 'BSIT',
-            'section' => 'A',
-        ]);
-
-        Subject::factory(20)->create();
+        
+        Student::all()->each(function ($student) {
+            Subject::factory()->count(8)->create([
+                'student_id' => $student->id
+            ]);
+        });
     }
 }
